@@ -76,8 +76,8 @@ export default function Home() {
               href={`#${href}`}
               onClick={(e) => scrollTo(e, href)}
               className={`relative pb-1 transition-colors duration-300 group ${activeSection === href
-                  ? isDark ? "text-white" : "text-black"
-                  : isDark ? "hover:text-white" : "hover:text-black"
+                ? isDark ? "text-white" : "text-black"
+                : isDark ? "hover:text-white" : "hover:text-black"
                 }`}
             >
               {label}
