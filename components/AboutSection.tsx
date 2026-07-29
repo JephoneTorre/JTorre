@@ -85,7 +85,7 @@ export default function AboutSection({ isDark }: AboutSectionProps) {
                 transitionDuration={300}
                 cellSize={5.5}
                 dotRadius={1.7}
-                shadowThreshold={0.45}
+                shadowThreshold={0.60}
                 jitterAmount={0.02}
                 dotColor={isDark ? "#ffffff" : "#000000"}
                 backgroundColor={isDark ? "#000000" : "#ffffff"}
