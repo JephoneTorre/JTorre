@@ -1,11 +1,47 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import HalftonePortrait from "@/components/HalftonePortrait";
+import AboutSection from "@/components/AboutSection";
+
+const NAV_LINKS = [
+  { label: "WORK", href: "work" },
+  { label: "ABOUT", href: "about" },
+  { label: "CONTACT", href: "contact" },
+];
 
 export default function Home() {
   const [theme, setTheme] = useState<"dark" | "light">("dark");
   const isDark = theme === "dark";
+  const [activeSection, setActiveSection] = useState<string>("");
+
+  // Smooth scroll handler
+  const scrollTo = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+      e.preventDefault();
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+        setActiveSection(id);
+      }
+    },
+    []
+  );
+
+  // Track active section on scroll
+  useEffect(() => {
+    const sections = NAV_LINKS.map((l) => document.getElementById(l.href)).filter(Boolean) as HTMLElement[];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveSection(entry.target.id);
+        });
+      },
+      { rootMargin: "-40% 0px -55% 0px", threshold: 0 }
+    );
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div
@@ -26,28 +62,29 @@ export default function Home() {
           className={`hidden sm:flex gap-8 text-xs font-semibold tracking-[0.2em] uppercase transition-colors duration-500 ${isDark ? "text-zinc-400" : "text-zinc-600"
             }`}
         >
-          <a
-            href="#work"
-            className={`transition-colors duration-300 ${isDark ? "hover:text-white" : "hover:text-black"
-              }`}
-          >
-            WORK
-          </a>
-          <a
-            href="#about"
-            className={`transition-colors duration-300 ${isDark ? "hover:text-white" : "hover:text-black"
-              }`}
-          >
-            ABOUT
-          </a>
-          <a
-            href="#contact"
-            className={`transition-colors duration-300 ${isDark ? "hover:text-white" : "hover:text-black"
-              }`}
-          >
-            CONTACT
-          </a>
+          {NAV_LINKS.map(({ label, href }) => (
+            <a
+              key={href}
+              href={`#${href}`}
+              onClick={(e) => scrollTo(e, href)}
+              className={`relative pb-1 transition-colors duration-300 group ${activeSection === href
+                  ? isDark ? "text-white" : "text-black"
+                  : isDark ? "hover:text-white" : "hover:text-black"
+                }`}
+            >
+              {label}
+              {/* Animated underline indicator */}
+              <span
+                className={`absolute bottom-0 left-0 h-[1.5px] transition-all duration-400 ease-out ${isDark ? "bg-white" : "bg-black"
+                  } ${activeSection === href
+                    ? "w-full"
+                    : "w-0 group-hover:w-full"
+                  }`}
+              />
+            </a>
+          ))}
         </nav>
+
 
         <div className="flex items-center gap-4">
           {/* Day / Night Mode Toggle */}
@@ -165,7 +202,7 @@ export default function Home() {
             </div>
 
             <div className="flex flex-col gap-2">
-              <h1 className="text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tighter leading-none uppercase">
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tighter leading-none uppercase">
                 JEPHONE ISRAEL <br />
                 <span
                   className={`text-transparent bg-clip-text bg-gradient-to-r ${isDark
@@ -206,6 +243,9 @@ export default function Home() {
           </div>
         </div>
       </main>
+
+      {/* About Section */}
+      <AboutSection isDark={isDark} />
 
       {/* Premium Minimalist Footer */}
       <footer

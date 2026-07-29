@@ -56,6 +56,8 @@ interface HalftonePortraitProps {
   shadowThreshold?: number;
   /** Structural grid jitter fraction (0–1). Default 0.15. */
   jitterAmount?: number;
+  /** Optional fixed target index for controlled playback (e.g. scroll-triggered morphing). */
+  targetIndex?: number;
   className?: string;
 }
 
@@ -71,6 +73,7 @@ export default function HalftonePortrait({
   dotRadius = 2.8,
   shadowThreshold = 0.12,
   jitterAmount = 0.15,
+  targetIndex,
   className = "",
 }: HalftonePortraitProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -396,6 +399,20 @@ export default function HalftonePortrait({
     srcsKey,
   ]);
 
+  // Controlled targetIndex change handler
+  useEffect(() => {
+    if (targetIndex !== undefined && allImagesLoaded && srcs.length > 0) {
+      const validTarget = Math.max(0, Math.min(srcs.length - 1, targetIndex));
+      const seq = seqRef.current;
+      if (seq.currentIndex !== validTarget || seq.nextIndex !== validTarget) {
+        seq.nextIndex = validTarget;
+        seq.phase = "transitioning";
+        seq.phaseStart = performance.now();
+        seq.transitionT = 0;
+      }
+    }
+  }, [targetIndex, allImagesLoaded, srcs.length]);
+
   // ── 5. Static render (prefers-reduced-motion) ────────────────────────────
   const renderStaticFrame = () => {
     const canvas = canvasRef.current;
@@ -458,7 +475,7 @@ export default function HalftonePortrait({
 
       // Advance Sequence State Machine
       if (seq.phase === "displaying") {
-        if (elapsed >= displayDuration) {
+        if (targetIndex === undefined && elapsed >= displayDuration) {
           seq.nextIndex = (seq.currentIndex + 1) % N;
           seq.phase = "transitioning";
           seq.phaseStart = now;
