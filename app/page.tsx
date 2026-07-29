@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
+import Image from "next/image";
 import HalftonePortrait from "@/components/HalftonePortrait";
 import AboutSection from "@/components/AboutSection";
 
@@ -55,8 +56,15 @@ export default function Home() {
         className={`w-full max-w-7xl mx-auto px-6 md:px-12 py-8 flex justify-between items-center border-b transition-colors duration-500 ${isDark ? "border-zinc-900/80" : "border-zinc-200"
           }`}
       >
-        <div className="text-xl font-black tracking-widest uppercase">
-          J. TORRE
+        <div className="flex items-center">
+          <Image
+            src={isDark ? "/images/LOGO_DARKMODE.svg" : "/images/LOGO_LIGHTMODE.svg"}
+            alt="J. Torre Logo"
+            width={120}
+            height={40}
+            priority
+            className="transition-opacity duration-500"
+          />
         </div>
         <nav
           className={`hidden sm:flex gap-8 text-xs font-semibold tracking-[0.2em] uppercase transition-colors duration-500 ${isDark ? "text-zinc-400" : "text-zinc-600"
@@ -149,9 +157,9 @@ export default function Home() {
       <main className="flex-1 w-full max-w-7xl mx-auto px-6 md:px-12 py-12 md:py-24 flex items-center justify-center">
         <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Left Column: Interactive Halftone Portrait */}
-          <div className="lg:col-span-5 flex justify-center order-2 lg:order-1">
+          <div className="lg:col-span-5 flex justify-center order-1 lg:order-1">
             <div
-              className={`w-full max-w-[420px] aspect-[4/5] group relative transition-colors duration-500 ${isDark ? "bg-black" : "bg-white"
+              className={`w-full max-w-[200px] lg:max-w-[420px] aspect-[4/5] group relative transition-colors duration-500 ${isDark ? "bg-black" : "bg-white"
                 }`}
             >
               {/* HalftonePortrait Component */}
@@ -187,7 +195,7 @@ export default function Home() {
           </div>
 
           {/* Right Column: Premium Bold Uppercase Display Copy */}
-          <div className="lg:col-span-7 flex flex-col gap-6 md:gap-8 order-1 lg:order-2">
+          <div className="lg:col-span-7 flex flex-col gap-6 md:gap-8 order-2 lg:order-2">
             <div className="flex items-center gap-3">
               <span
                 className={`h-[1px] w-8 ${isDark ? "bg-zinc-700" : "bg-zinc-400"
