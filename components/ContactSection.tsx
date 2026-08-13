@@ -8,20 +8,54 @@ interface ContactSectionProps {
 
 export default function ContactSection({ isDark }: ContactSectionProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
   const email = "jefoni123451@gmail.com";
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText(email).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  };
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitStatus("idle");
     
-    const formData = new FormData(e.currentTarget);
-    const subject = formData.get("subject")?.toString() || "Project Inquiry";
-    const body = `Name: ${formData.get("name")}\n\nMessage:\n${formData.get("message")}`;
-    
-    setTimeout(() => {
-      window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    formData.append("access_key", "8501af4b-f4a7-4695-b7e1-ab1af1b642ec");
+    // Optionally format subject for the email sent by Web3Forms
+    formData.append("subject", `New submission from portfolio: ${formData.get("subject")}`);
+
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+        },
+        body: formData,
+      });
+      
+      const result = await res.json();
+
+      if (result.success) {
+        setSubmitStatus("success");
+        form.reset();
+      } else {
+        console.error("Web3Forms error:", result);
+        setSubmitStatus("error");
+      }
+    } catch (error) {
+      console.error("Fetch error:", error);
+      setSubmitStatus("error");
+    } finally {
       setIsSubmitting(false);
-    }, 500);
+      setTimeout(() => setSubmitStatus("idle"), 5000); // Reset button state after 5 seconds
+    }
   };
 
   return (
@@ -77,17 +111,31 @@ export default function ContactSection({ isDark }: ContactSectionProps) {
 
             <div className="flex flex-col gap-6 mt-4">
               {/* Email */}
-              <div className="flex items-center gap-4 group cursor-pointer" onClick={() => window.location.href = `mailto:${email}`}>
+              <div 
+                className="flex items-center gap-4 group cursor-pointer relative" 
+                onClick={handleCopyEmail}
+              >
                 <div className={`w-12 h-12 rounded-sm border flex items-center justify-center transition-colors duration-300 ${isDark ? "border-zinc-800 bg-zinc-900/50 group-hover:bg-white group-hover:text-black group-hover:border-white" : "border-zinc-200 bg-white group-hover:bg-black group-hover:text-white group-hover:border-black"}`}>
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
+                  {copied ? (
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                  ) : (
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    </svg>
+                  )}
                 </div>
                 <div>
-                  <p className={`text-[10px] font-bold tracking-[0.2em] uppercase mb-1 ${isDark ? "text-zinc-500" : "text-zinc-400"}`}>Email</p>
-                  <a href={`mailto:${email}`} className={`text-sm font-medium tracking-wide transition-colors duration-300 ${isDark ? "text-zinc-300 group-hover:text-white" : "text-zinc-700 group-hover:text-black"}`}>
+                  <div className="flex items-center gap-2 mb-1">
+                    <p className={`text-[10px] font-bold tracking-[0.2em] uppercase ${isDark ? "text-zinc-500" : "text-zinc-400"}`}>Email</p>
+                    {copied && (
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-green-500">Copied!</span>
+                    )}
+                  </div>
+                  <p className={`text-sm font-medium tracking-wide transition-colors duration-300 ${isDark ? "text-zinc-300 group-hover:text-white" : "text-zinc-700 group-hover:text-black"}`}>
                     {email}
-                  </a>
+                  </p>
                 </div>
               </div>
 
@@ -183,6 +231,16 @@ export default function ContactSection({ isDark }: ContactSectionProps) {
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                       </svg>
                       Sending...
+                    </span>
+                  ) : submitStatus === "success" ? (
+                    <span className="text-green-500 flex items-center gap-2">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>
+                      Message Sent!
+                    </span>
+                  ) : submitStatus === "error" ? (
+                    <span className="text-red-500 flex items-center gap-2">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                      Failed to send
                     </span>
                   ) : (
                     "SEND MESSAGE"
