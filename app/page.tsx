@@ -5,6 +5,7 @@ import Image from "next/image";
 import HalftonePortrait from "@/components/HalftonePortrait";
 import AboutSection from "@/components/AboutSection";
 import ProjectsSection from "@/components/ProjectsSection";
+import ContactSection from "@/components/ContactSection";
 
 const NAV_LINKS = [
   { label: "WORK", href: "work" },
@@ -271,6 +272,9 @@ export default function Home() {
 
       {/* Projects Section */}
       <ProjectsSection isDark={isDark} />
+
+      {/* Contact Section */}
+      <ContactSection isDark={isDark} />
 
       {/* Premium Minimalist Footer */}
       <footer
