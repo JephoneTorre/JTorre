@@ -86,6 +86,7 @@ const FLOORS: SkillFloor[] = [
     skills: [
       { name: "Hostinger" },
       { name: "GoHighLevel (GHL)" },
+      { name: "Zapier" },
     ],
   },
 ];

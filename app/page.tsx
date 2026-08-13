@@ -4,6 +4,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import HalftonePortrait from "@/components/HalftonePortrait";
 import AboutSection from "@/components/AboutSection";
+import ProjectsSection from "@/components/ProjectsSection";
 
 const NAV_LINKS = [
   { label: "WORK", href: "work" },
@@ -239,13 +240,26 @@ export default function Home() {
 
             <div className="flex flex-col sm:flex-row gap-4 mt-2">
               <a
-                href="#projects"
+                href="#contact"
                 className={`flex items-center justify-center h-12 px-8 text-xs font-bold tracking-[0.2em] uppercase transition-colors duration-300 rounded-sm ${isDark
                   ? "bg-white text-black hover:bg-zinc-200"
                   : "bg-black text-white hover:bg-zinc-800"
                   }`}
               >
-                VIEW PROJECTS
+                WORK WITH ME
+              </a>
+              <a
+                href="/TORRE_CV_2026.pdf"
+                download
+                className={`flex items-center justify-center gap-2 h-12 px-8 text-xs font-bold tracking-[0.2em] uppercase transition-all duration-300 rounded-sm border ${isDark
+                  ? "border-zinc-700 text-zinc-300 hover:border-zinc-400 hover:text-white"
+                  : "border-zinc-400 text-zinc-700 hover:border-zinc-800 hover:text-black"
+                  }`}
+              >
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                DOWNLOAD CV
               </a>
             </div>
           </div>
@@ -254,6 +268,9 @@ export default function Home() {
 
       {/* About Section */}
       <AboutSection isDark={isDark} />
+
+      {/* Projects Section */}
+      <ProjectsSection isDark={isDark} />
 
       {/* Premium Minimalist Footer */}
       <footer

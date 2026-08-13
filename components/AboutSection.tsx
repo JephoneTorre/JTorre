@@ -163,8 +163,124 @@ export default function AboutSection({ isDark }: AboutSectionProps) {
           </div>
         </div>
 
+        {/* ── Work Experience ── */}
+        <div className={`mb-20 pt-16 border-t ${isDark ? "border-zinc-900/80" : "border-zinc-200"}`}>
+          {/* Sub-header */}
+          <div className="flex flex-col gap-3 mb-12">
+            <div className="flex items-center gap-3">
+              <span className={`h-[1px] w-8 ${isDark ? "bg-zinc-700" : "bg-zinc-400"}`} />
+              <span className={`text-[10px] tracking-[0.3em] font-extrabold uppercase ${isDark ? "text-zinc-500" : "text-zinc-500"}`}>
+                WORK EXPERIENCE
+              </span>
+            </div>
+            <h3 className="text-2xl sm:text-3xl font-black tracking-tight uppercase">
+              WHERE I&apos;VE{" "}
+              <span className={`text-transparent bg-clip-text bg-gradient-to-r ${isDark ? "from-white via-zinc-400 to-zinc-600" : "from-black via-zinc-700 to-zinc-500"}`}>
+                WORKED
+              </span>
+            </h3>
+          </div>
+
+          {/* Timeline */}
+          <div className="max-w-3xl flex flex-col">
+
+            {/* FARBEN */}
+            <div className="relative flex gap-6">
+              <div className="flex flex-col items-center">
+                <div className={`w-3 h-3 rounded-full mt-1.5 shrink-0 ring-2 ${isDark ? "bg-white ring-zinc-900" : "bg-black ring-white"}`} />
+                <div className={`flex-1 w-[1px] mt-2 ${isDark ? "bg-zinc-800" : "bg-zinc-200"}`} />
+              </div>
+              <div className="flex-1 pb-10">
+                <div className="flex flex-wrap items-start gap-x-3 gap-y-1 mb-1">
+                  <h4 className={`text-base font-bold tracking-tight ${isDark ? "text-white" : "text-zinc-900"}`}>Farben</h4>
+                  <span className={`text-[10px] font-semibold uppercase tracking-[0.15em] px-2 py-0.5 rounded-sm ${isDark ? "bg-zinc-800 text-zinc-500" : "bg-zinc-100 text-zinc-500"}`}>AI Trainer</span>
+                  <span className={`text-[10px] font-semibold uppercase tracking-[0.15em] px-2 py-0.5 rounded-sm ${isDark ? "bg-zinc-800 text-zinc-500" : "bg-zinc-100 text-zinc-500"}`}>Full-time · Remote</span>
+                </div>
+                <div className={`flex items-center gap-1.5 text-xs mb-3 ${isDark ? "text-zinc-600" : "text-zinc-400"}`}>
+                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                  July 7, 2026 – Current
+                </div>
+                <ul className={`flex flex-col gap-2 text-sm leading-relaxed ${isDark ? "text-zinc-400" : "text-zinc-600"}`}>
+                  <li className="flex gap-2"><span className={`mt-1.5 w-1 h-1 rounded-full shrink-0 ${isDark ? "bg-zinc-600" : "bg-zinc-400"}`} />Evaluated and fine-tuned AI models by creating, testing, and optimizing technical prompts, datasets, and code across STEM, software engineering, and data analytics domains.</li>
+                  <li className="flex gap-2"><span className={`mt-1.5 w-1 h-1 rounded-full shrink-0 ${isDark ? "bg-zinc-600" : "bg-zinc-400"}`} />Conducted rigorous quality assurance and code reviews on AI-generated solutions to eliminate logical errors, improve model reasoning, and ensure production-grade accuracy.</li>
+                </ul>
+              </div>
+            </div>
+
+            {/* LineWise */}
+            <div className="relative flex gap-6">
+              <div className="flex flex-col items-center">
+                <div className={`w-3 h-3 rounded-full mt-1.5 shrink-0 ring-2 ${isDark ? "bg-white ring-zinc-900" : "bg-black ring-white"}`} />
+                <div className={`flex-1 w-[1px] mt-2 ${isDark ? "bg-zinc-800" : "bg-zinc-200"}`} />
+              </div>
+              <div className="flex-1 pb-10">
+                <div className="flex flex-wrap items-start gap-x-3 gap-y-1 mb-1">
+                  <h4 className={`text-base font-bold tracking-tight ${isDark ? "text-white" : "text-zinc-900"}`}>LineWise</h4>
+                  <span className={`text-[10px] font-semibold uppercase tracking-[0.15em] px-2 py-0.5 rounded-sm ${isDark ? "bg-zinc-800 text-zinc-500" : "bg-zinc-100 text-zinc-500"}`}>Expert Validator</span>
+                  <span className={`text-[10px] font-semibold uppercase tracking-[0.15em] px-2 py-0.5 rounded-sm ${isDark ? "bg-zinc-800 text-zinc-500" : "bg-zinc-100 text-zinc-500"}`}>Part-time</span>
+                </div>
+                <div className={`flex items-center gap-1.5 text-xs mb-3 ${isDark ? "text-zinc-600" : "text-zinc-400"}`}>
+                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                  May 30, 2026 – Current
+                </div>
+                <ul className={`flex flex-col gap-2 text-sm leading-relaxed ${isDark ? "text-zinc-400" : "text-zinc-600"}`}>
+                  <li className="flex gap-2"><span className={`mt-1.5 w-1 h-1 rounded-full shrink-0 ${isDark ? "bg-zinc-600" : "bg-zinc-400"}`} />Validated and reviewed over 1,000 hours of video datasets to ensure annotation accuracy and data quality for AI model and robotics training.</li>
+                </ul>
+              </div>
+            </div>
+
+            {/* VIPscale */}
+            <div className="relative flex gap-6">
+              <div className="flex flex-col items-center">
+                <div className={`w-3 h-3 rounded-full mt-1.5 shrink-0 ring-2 ${isDark ? "bg-white ring-zinc-900" : "bg-black ring-white"}`} />
+                <div className={`flex-1 w-[1px] mt-2 ${isDark ? "bg-zinc-800" : "bg-zinc-200"}`} />
+              </div>
+              <div className="flex-1 pb-10">
+                <div className="flex flex-wrap items-start gap-x-3 gap-y-1 mb-1">
+                  <h4 className={`text-base font-bold tracking-tight ${isDark ? "text-white" : "text-zinc-900"}`}>VIPscale</h4>
+                  <span className={`text-[10px] font-semibold uppercase tracking-[0.15em] px-2 py-0.5 rounded-sm ${isDark ? "bg-zinc-800 text-zinc-500" : "bg-zinc-100 text-zinc-500"}`}>Software / AI Engineer Intern · Marketing</span>
+                  <span className={`text-[10px] font-semibold uppercase tracking-[0.15em] px-2 py-0.5 rounded-sm ${isDark ? "bg-zinc-800 text-zinc-500" : "bg-zinc-100 text-zinc-500"}`}>486 hrs · Remote</span>
+                </div>
+                <div className={`flex items-center gap-1.5 text-xs mb-3 ${isDark ? "text-zinc-600" : "text-zinc-400"}`}>
+                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                  January 27, 2026 – April 30, 2026
+                </div>
+                <ul className={`flex flex-col gap-2 text-sm leading-relaxed ${isDark ? "text-zinc-400" : "text-zinc-600"}`}>
+                  <li className="flex gap-2"><span className={`mt-1.5 w-1 h-1 rounded-full shrink-0 ${isDark ? "bg-zinc-600" : "bg-zinc-400"}`} />Created LIA RAG chatbot using self-hosted Ollama on Hostinger and n8n webhook as the backend for the XFnite project in GHL, eliminating token costs.</li>
+                  <li className="flex gap-2"><span className={`mt-1.5 w-1 h-1 rounded-full shrink-0 ${isDark ? "bg-zinc-600" : "bg-zinc-400"}`} />Created VIA RAG chatbot using the same infrastructure approach with a different dataset for VIPscale.</li>
+                  <li className="flex gap-2"><span className={`mt-1.5 w-1 h-1 rounded-full shrink-0 ${isDark ? "bg-zinc-600" : "bg-zinc-400"}`} />Built various automation workflows to generate content using Gemini node and webhook integrations for the company&apos;s internal tools.</li>
+                </ul>
+              </div>
+            </div>
+
+            {/* BHW */}
+            <div className="relative flex gap-6">
+              <div className="flex flex-col items-center">
+                <div className={`w-3 h-3 rounded-full mt-1.5 shrink-0 ring-2 ${isDark ? "bg-white ring-zinc-900" : "bg-black ring-white"}`} />
+              </div>
+              <div className="flex-1 pb-0">
+                <div className="flex flex-wrap items-start gap-x-3 gap-y-1 mb-1">
+                  <h4 className={`text-base font-bold tracking-tight ${isDark ? "text-white" : "text-zinc-900"}`}>Provincial BHW Association of Iloilo</h4>
+                  <span className={`text-[10px] font-semibold uppercase tracking-[0.15em] px-2 py-0.5 rounded-sm ${isDark ? "bg-zinc-800 text-zinc-500" : "bg-zinc-100 text-zinc-500"}`}>Admin Support & Data Management</span>
+                </div>
+                <div className={`flex items-center gap-1.5 text-xs mb-3 ${isDark ? "text-zinc-600" : "text-zinc-400"}`}>
+                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                  July 2022 – August 2025 · Iloilo, PH
+                </div>
+                <ul className={`flex flex-col gap-2 text-sm leading-relaxed ${isDark ? "text-zinc-400" : "text-zinc-600"}`}>
+                  <li className="flex gap-2"><span className={`mt-1.5 w-1 h-1 rounded-full shrink-0 ${isDark ? "bg-zinc-600" : "bg-zinc-400"}`} />Document editing, formatting, and design support — polishing content (PPT, Excel, posters), improving visuals, and ensuring materials meet the association&apos;s standards.</li>
+                  <li className="flex gap-2"><span className={`mt-1.5 w-1 h-1 rounded-full shrink-0 ${isDark ? "bg-zinc-600" : "bg-zinc-400"}`} />Assisted in maintaining payroll records for BHWs at the municipal and provincial levels.</li>
+                  <li className="flex gap-2"><span className={`mt-1.5 w-1 h-1 rounded-full shrink-0 ${isDark ? "bg-zinc-600" : "bg-zinc-400"}`} />Compiled and updated the BHW master list (municipal, provincial, regional) and supported data entry for the BHW National Registry.</li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
         {/* Tower Skills Visualization */}
         <TowerSkills isDark={isDark} />
+
       </div>
     </section>
   );
