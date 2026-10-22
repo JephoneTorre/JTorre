@@ -64,6 +64,14 @@ const PERSONAL_PROJECTS = [
     bgImage: "/images/via.png",
     link: "https://via-cyan.vercel.app/",
   },
+  {
+    title: "HO Presenter",
+    description: "Church service presentation desktop app",
+    role: "Developer",
+    tags: ["Electron", "React", "TypeScript", "Vite"],
+    bgImage: "/images/precenter.png",
+    link: "https://drive.google.com/drive/folders/1HC_uaFisy6B2_u1DNsXu_QbNGME7Y_xl?usp=drive_link",
+  },
 ];
 
 const GROUP_PROJECTS = [
