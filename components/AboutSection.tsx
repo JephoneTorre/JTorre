@@ -184,6 +184,29 @@ export default function AboutSection({ isDark }: AboutSectionProps) {
           {/* Timeline */}
           <div className="max-w-3xl flex flex-col">
 
+            {/* INNODATA */}
+            <div className="relative flex gap-6">
+              <div className="flex flex-col items-center">
+                <div className={`w-3 h-3 rounded-full mt-1.5 shrink-0 ring-2 ${isDark ? "bg-white ring-zinc-900" : "bg-black ring-white"}`} />
+                <div className={`flex-1 w-[1px] mt-2 ${isDark ? "bg-zinc-800" : "bg-zinc-200"}`} />
+              </div>
+              <div className="flex-1 pb-10">
+                <div className="flex flex-wrap items-start gap-x-3 gap-y-1 mb-1">
+                  <h4 className={`text-base font-bold tracking-tight ${isDark ? "text-white" : "text-zinc-900"}`}>Innodata</h4>
+                  <span className={`text-[10px] font-semibold uppercase tracking-[0.15em] px-2 py-0.5 rounded-sm ${isDark ? "bg-zinc-800 text-zinc-500" : "bg-zinc-100 text-zinc-500"}`}>AI Analyst (Level 2)</span>
+                  <span className={`text-[10px] font-semibold uppercase tracking-[0.15em] px-2 py-0.5 rounded-sm ${isDark ? "bg-zinc-800 text-zinc-500" : "bg-zinc-100 text-zinc-500"}`}>Contract</span>
+                </div>
+                <div className={`flex items-center gap-1.5 text-xs mb-3 ${isDark ? "text-zinc-600" : "text-zinc-400"}`}>
+                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                  October 1, 2026 – November 15, 2026
+                </div>
+                <ul className={`flex flex-col gap-2 text-sm leading-relaxed ${isDark ? "text-zinc-400" : "text-zinc-600"}`}>
+                  <li className="flex gap-2"><span className={`mt-1.5 w-1 h-1 rounded-full shrink-0 ${isDark ? "bg-zinc-600" : "bg-zinc-400"}`} />Reviewed and evaluated AI-generated outputs against project guidelines to improve model accuracy and quality.</li>
+                  <li className="flex gap-2"><span className={`mt-1.5 w-1 h-1 rounded-full shrink-0 ${isDark ? "bg-zinc-600" : "bg-zinc-400"}`} />Analyzed and validated datasets, flagging errors and inconsistencies to support AI model training.</li>
+                </ul>
+              </div>
+            </div>
+
             {/* FARBEN */}
             <div className="relative flex gap-6">
               <div className="flex flex-col items-center">
@@ -198,7 +221,7 @@ export default function AboutSection({ isDark }: AboutSectionProps) {
                 </div>
                 <div className={`flex items-center gap-1.5 text-xs mb-3 ${isDark ? "text-zinc-600" : "text-zinc-400"}`}>
                   <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
-                  July 7, 2026 – Current
+                  July 7, 2026 – Sept 22, 2026
                 </div>
                 <ul className={`flex flex-col gap-2 text-sm leading-relaxed ${isDark ? "text-zinc-400" : "text-zinc-600"}`}>
                   <li className="flex gap-2"><span className={`mt-1.5 w-1 h-1 rounded-full shrink-0 ${isDark ? "bg-zinc-600" : "bg-zinc-400"}`} />Evaluated and fine-tuned AI models by creating, testing, and optimizing technical prompts, datasets, and code across STEM, software engineering, and data analytics domains.</li>
